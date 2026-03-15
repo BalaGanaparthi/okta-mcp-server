@@ -1,0 +1,51 @@
+╔════════════════════════════════════════════════════════╗
+║          HOW TO START ALL SERVICES                     ║
+║          Okta MCP Server                               ║
+╚════════════════════════════════════════════════════════╝
+
+🚀 ONE COMMAND TO START EVERYTHING:
+
+  cd /Users/balaganaparthi/Documents/claude-projects/project002/okta-mcp-server
+  ./start-all.sh
+
+  This will:
+  ✅ Start Redis (Docker)
+  ✅ Start Jaeger (Docker)  
+  ✅ Prompt to start MCP Server (local)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📋 MANUAL COMMANDS:
+
+  # Start Docker services
+  docker-compose -f docker-compose.services.yml up -d redis jaeger
+
+  # Start MCP server (in another terminal)
+  source venv/bin/activate
+  python server.py
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ VERIFY IT'S WORKING:
+
+  docker ps | grep okta-mcp
+  docker exec okta-mcp-redis redis-cli ping
+  pytest tests/ -v
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛑 STOP SERVICES:
+
+  # Stop Docker
+  docker-compose -f docker-compose.services.yml down
+
+  # Stop MCP server
+  Press Ctrl+C
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 MORE INFO:
+
+  See HOW_TO_START.md for detailed instructions
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
