@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   # Okta MCP Server
@@ -23,7 +23,7 @@ services:
 
   # Redis Cache
   redis:
-    image: redis:7-alpine
+    image: redis:alpine
     container_name: okta-mcp-redis
     command: redis-server --appendonly yes
     volumes:
@@ -45,10 +45,10 @@ services:
     volumes:
       - ./otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
-      - "4317:4317"   # OTLP gRPC receiver
-      - "4318:4318"   # OTLP HTTP receiver
-      - "8888:8888"   # Prometheus metrics
-      - "8889:8889"   # Prometheus exporter
+      - "4317:4317" # OTLP gRPC receiver
+      - "4318:4318" # OTLP HTTP receiver
+      - "8888:8888" # Prometheus metrics
+      - "8889:8889" # Prometheus exporter
       - "13133:13133" # Health check
     networks:
       - okta-mcp-network
