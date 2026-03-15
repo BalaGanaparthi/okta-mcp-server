@@ -1,0 +1,46 @@
+# RBAC Policy for Okta MCP Server
+# Format: p, role, resource, action
+
+# Admin - full access
+p, admin, user, create
+p, admin, user, read
+p, admin, user, update
+p, admin, user, delete
+p, admin, user, suspend
+p, admin, user, activate
+p, admin, user, deactivate
+p, admin, user, unlock
+p, admin, user, reset_password
+p, admin, user, terminate
+p, admin, group, create
+p, admin, group, read
+p, admin, group, update
+p, admin, group, delete
+p, admin, group, add_member
+p, admin, group, remove_member
+
+# Helpdesk - user operations only
+p, helpdesk, user, create
+p, helpdesk, user, read
+p, helpdesk, user, update
+p, helpdesk, user, suspend
+p, helpdesk, user, unsuspend
+p, helpdesk, user, activate
+p, helpdesk, user, unlock
+p, helpdesk, user, reset_password
+p, helpdesk, group, read
+p, helpdesk, group, add_member
+p, helpdesk, group, remove_member
+
+# Auditor - read-only access
+p, auditor, user, read
+p, auditor, group, read
+
+# Agent - limited access
+p, agent, user, read
+p, agent, group, read
+
+# Role hierarchy (higher roles inherit lower role permissions)
+g, admin, helpdesk
+g, helpdesk, auditor
+g, auditor, agent
